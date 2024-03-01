@@ -1,0 +1,16 @@
+{
+  "name": "groceryapp",
+  "version": "1.0.0",
+  "description": "Chatbot for grocery list app",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node chatbot.js"
+  },
+  "author": "Evan Tardiff",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "openai": "^4.28.0"
+  }
+}
