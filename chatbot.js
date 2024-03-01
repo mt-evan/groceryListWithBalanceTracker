@@ -1,4 +1,4 @@
-const API_KEY = "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";
+const API_KEY = "";
 
 // collect input
 const input = document.getElementById("chatbot-input");
