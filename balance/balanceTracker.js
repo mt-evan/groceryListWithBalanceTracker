@@ -72,7 +72,7 @@ function addTransactionRow(date, time, startingBalance, endingBalance) {
 
     // Update the current balance
     const currBalanceEl = document.querySelector('#current-balance');
-    currBalanceEl.textContent = endingBalance;
+    currBalanceEl.innerHTML += endingBalance;
 }
 
 // Listen for changes in the transactions node
