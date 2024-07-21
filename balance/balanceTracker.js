@@ -1,6 +1,7 @@
 // Import Firebase functions/methods
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
 import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+
 const appSettings = {
     databaseURL: "https://realtime-database-30537-default-rtdb.firebaseio.com/"
 };
@@ -18,7 +19,7 @@ function addTransaction(date, time, startBal, endBal) {
         date: date,
         time: time,
         startBal: startBal,
-        endBal: endBal
+        endBal: endBal,
     };
     
     push(transactionsRef, transaction)
@@ -30,51 +31,37 @@ function addTransaction(date, time, startBal, endBal) {
         });
 }
 
-// Example usage: Adding a transaction
-
-onValue(transactionsRef, (snapshot) => {
-    if (snapshot.exists()) {
-        let itemsArray = Object.entries(snapshot.val());
-        
-    } else {
-        console.log("No transactions found");
-    }
-})
-
-
-
-/* const currBalanceEl = document.querySelector('#current-balance');
-const addTransactionButton = document.querySelector('#add-transaction-button');
-const transactionsTableBody = document.querySelector('#transactions-table tbody');
-
-function addTransaction(date, time, startingBalance, endingBalance, difference) {
-    // Select the table body
+// Function to add a transaction row to the table
+function addTransactionRow(date, time, startingBalance, endingBalance) {
     const tableBody = document.querySelector('#transactions-table tbody');
- 
+
     // Create a new row
     const newRow = document.createElement('tr');
- 
+
     // Create and append cells to the new row
     const dateCell = document.createElement('td');
     dateCell.textContent = date;
     newRow.appendChild(dateCell);
- 
+
     const timeCell = document.createElement('td');
     timeCell.textContent = time;
     newRow.appendChild(timeCell);
- 
+
     const startingBalanceCell = document.createElement('td');
     startingBalanceCell.textContent = startingBalance;
     newRow.appendChild(startingBalanceCell);
- 
+
     const endingBalanceCell = document.createElement('td');
     endingBalanceCell.textContent = endingBalance;
     newRow.appendChild(endingBalanceCell);
- 
+
     const differenceCell = document.createElement('td');
-    differenceCell.textContent = difference;
+    const starting = parseFloat(startingBalance.replace('$', ''));
+    const ending = parseFloat(endingBalance.replace('$', ''));
+    const difference = ending - starting;
+    differenceCell.textContent = `$${difference.toFixed(2)}`;
     newRow.appendChild(differenceCell);
- 
+
     // Insert the new row at the top of the table body
     if (tableBody.firstChild) {
         tableBody.insertBefore(newRow, tableBody.firstChild);
@@ -83,13 +70,31 @@ function addTransaction(date, time, startingBalance, endingBalance, difference) 
     }
 
     // Update the current balance
-   // currBalanceEl.innerHTML = currBalanceEl + endingBalance;
-    //currBalanceEl.appendChild(endingBalance);
- }
- 
- // Example usage
- addTransaction('2024-07-21', '12:34 PM', '$1000', '$800', '-$200');
- addTransaction('2024-07-22', '01:45 PM', '$800', '$600', '-$200');
- 
+    const currBalanceEl = document.querySelector('#current-balance');
+    currBalanceEl.textContent = endingBalance;
+}
 
-*/
+// Listen for changes in the transactions node
+onValue(transactionsRef, (snapshot) => {
+    const transactionsTableBody = document.querySelector('#transactions-table tbody');
+    transactionsTableBody.innerHTML = ""; // Clear existing rows
+
+    if (snapshot.exists()) {
+        const itemsArray = Object.entries(snapshot.val());
+        itemsArray.forEach(([key, transaction]) => {
+            addTransactionRow(transaction.date, transaction.time, transaction.startBal, transaction.endBal);
+        });
+    } else {
+        console.log("No transactions found");
+    }
+});
+
+// Example usage: Adding a transaction
+const addTransactionButton = document.querySelector('#add-transaction-button');
+addTransactionButton.addEventListener('click', () => {
+    const date = new Date().toLocaleDateString();
+    const time = new Date().toLocaleTimeString();
+    const currentBalance = parseFloat(document.querySelector('#current-balance').textContent.substring(1));
+    const newBalance = currentBalance - 200; // Example balance change
+    addTransaction(date, time, currentBalance, newBalance);
+});
