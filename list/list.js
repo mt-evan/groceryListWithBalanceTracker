@@ -2,6 +2,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
 import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
 
+// import the current balance from "../balance/balanceTracker.js"
+
 const appSettings = {
     databaseURL: "https://realtime-database-30537-default-rtdb.firebaseio.com/"
 }
