@@ -106,13 +106,14 @@ function checkInputValidity(input) {
         alert("Please enter a number");
         return false;
     }
+    return true;
 }
 
 const addTransactionButton = document.querySelector('#add-transaction-button');
 addTransactionButton.addEventListener('click', () => {
     let newBalance = document.querySelector('#input-field').value;
-    document.querySelector('#input-field').value = ""; // Clear the input field
     if (!checkInputValidity(newBalance)) {
+        document.querySelector('#input-field').value = ""; // Clear the input field
         return;
     }
     newBalance = `$${newBalance}`;
@@ -124,5 +125,6 @@ addTransactionButton.addEventListener('click', () => {
     const currentBalance = currBalanceEl.innerHTML.replace('Current Balance: ', '').trim();
     
     addTransaction(date, time, currentBalance, newBalance);
+    document.querySelector('#input-field').value = ""; // Clear the input field
 });
 
