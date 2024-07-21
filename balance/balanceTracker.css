@@ -55,6 +55,12 @@ html, body {
     color: #432000;
 }
 
+.table-caption {
+    font-size: 20px;
+    font-weight: 600;
+    color: #432000;
+}
+
 img {
     width: 150px;
     margin: 0 auto;
