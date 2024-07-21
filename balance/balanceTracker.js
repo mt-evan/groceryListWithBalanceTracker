@@ -149,15 +149,16 @@ table.addEventListener('click', (event) => {
         const row = event.target.parentNode;
         if (row.tagName === 'TR') {
             const rowIndex = Array.from(table.getElementsByTagName('tr')).indexOf(row);
-            if (rowIndex === 1) {
-                alert("Cannot delete most recent transaction");
+            var numRows = table.getElementsByTagName('tr').length - 1;
+            if (rowIndex !== numRows) {
+                alert("Can only delete oldest transaction");
             } else {
                 const confirmDelete = confirm("Delete Transaction?");
                 if (confirmDelete) {
                     deleteRow(rowIndex);
-                    alert("deleted");
+                    alert("Deleted");
                 } else {
-                    alert("cancelled");
+                    alert("Cancelled");
                 }
             }
         }
