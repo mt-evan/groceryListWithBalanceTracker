@@ -32,6 +32,7 @@ function addTransaction(date, time, startBal, endBal) {
 }
 
 // Function to add a transaction row to the table
+// all parameters are strings
 function addTransactionRow(date, time, startingBalance, endingBalance) {
     const tableBody = document.querySelector('#transactions-table tbody');
 
