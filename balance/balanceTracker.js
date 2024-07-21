@@ -1,6 +1,6 @@
 // Import Firebase functions/methods
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+import { getDatabase, ref, push, onValue, set } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 
 const appSettings = {
     databaseURL: "https://realtime-database-30537-default-rtdb.firebaseio.com/"
@@ -9,6 +9,7 @@ const appSettings = {
 // Initialize Firebase
 const app = initializeApp(appSettings);
 const database = getDatabase(app);
+const balanceRef = ref(database, 'currentBalance');
 
 // Reference to the transactions node
 const transactionsRef = ref(database, "transactions");
@@ -100,7 +101,13 @@ addTransactionButton.addEventListener('click', () => {
     // Get the current balance, clean it up, and use just the numeric part
     const currBalanceEl = document.querySelector('#current-balance');
     const currentBalance = currBalanceEl.innerHTML.replace('Current Balance: ', '').replace('$', '').trim();
+    updateBalance(currentBalance);
     
     addTransaction(date, time, currentBalance, newBalance);
     document.querySelector('#input-field').value = ""; // Clear the input field
 });
+
+function updateBalance(newBalance) {
+    newBalance = '$' + newBalance;
+    set(balanceRef, newBalance);
+}
