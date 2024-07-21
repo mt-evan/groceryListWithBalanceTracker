@@ -132,3 +132,27 @@ addTransactionButton.addEventListener('click', () => {
 
 // if a row is clicked, delete it and its data from the database
 // make deleting the most recent transaction not possible
+
+// Get the table element
+const table = document.getElementById('transactions-table'); // Replace with your table's ID
+
+// Add click event listener to the table
+table.addEventListener('click', (event) => {
+    // Check if the clicked element is a table row
+    if (event.target.tagName === 'TD') {
+        const row = event.target.parentNode;
+        if (row.tagName === 'TR') {
+            const rowIndex = Array.from(table.getElementsByTagName('tr')).indexOf(row);
+            if (rowIndex === 1) {
+                alert("Cannot delete most recent transaction");
+            } else {
+                const confirmDelete = confirm("Delete Transaction?");
+                if (confirmDelete) {
+                    alert("deleted");
+                } else {
+                    alert("cancelled");
+                }
+            }
+        }
+    }
+});
