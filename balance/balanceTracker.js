@@ -111,6 +111,7 @@ function checkInputValidity(input) {
 const addTransactionButton = document.querySelector('#add-transaction-button');
 addTransactionButton.addEventListener('click', () => {
     let newBalance = document.querySelector('#input-field').value;
+    document.querySelector('#input-field').value = ""; // Clear the input field
     if (!checkInputValidity(newBalance)) {
         return;
     }
@@ -123,6 +124,5 @@ addTransactionButton.addEventListener('click', () => {
     const currentBalance = currBalanceEl.innerHTML.replace('Current Balance: ', '').trim();
     
     addTransaction(date, time, currentBalance, newBalance);
-    document.querySelector('#input-field').value = ""; // Clear the input field
 });
 
