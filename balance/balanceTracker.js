@@ -95,9 +95,25 @@ function updateBalance(newBalance) {
     set(balanceRef, newBalance);
 }
 
+function checkInputValidity(input) {
+    // check if input is not empty
+    if (input === "") {
+        alert("Please enter a number");
+        return false;
+    }
+    // make sure we have a number
+    if (isNaN(input)) {
+        alert("Please enter a number");
+        return false;
+    }
+}
+
 const addTransactionButton = document.querySelector('#add-transaction-button');
 addTransactionButton.addEventListener('click', () => {
     let newBalance = document.querySelector('#input-field').value;
+    if (!checkInputValidity(newBalance)) {
+        return;
+    }
     newBalance = `$${newBalance}`;
     updateBalance(newBalance);
     const date = new Date().toLocaleDateString();
@@ -105,7 +121,6 @@ addTransactionButton.addEventListener('click', () => {
     
     const currBalanceEl = document.querySelector('#current-balance');
     const currentBalance = currBalanceEl.innerHTML.replace('Current Balance: ', '').trim();
-    
     
     addTransaction(date, time, currentBalance, newBalance);
     document.querySelector('#input-field').value = ""; // Clear the input field
