@@ -42,17 +42,6 @@ input {
     font-family: 'Rubik', sans-serif;
 }
 
-#ask-chatbot {
-    color: #FDFDFD;
-    background-color: #1a8851;
-    border: 0;
-    padding: 15px;
-    border-radius: 8px;
-    font-size: 20px;
-    text-align: center;
-    font-family: 'Rubik', sans-serif;
-}
-
 button:hover {
     background-color: #432000;
     cursor: pointer;
