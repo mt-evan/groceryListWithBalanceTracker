@@ -91,6 +91,10 @@ onValue(transactionsRef, (snapshot) => {
     }
 });
 
+function updateBalance(newBalance) {
+    set(balanceRef, newBalance);
+}
+
 const addTransactionButton = document.querySelector('#add-transaction-button');
 addTransactionButton.addEventListener('click', () => {
     let newBalance = document.querySelector('#input-field').value;
@@ -107,6 +111,3 @@ addTransactionButton.addEventListener('click', () => {
     document.querySelector('#input-field').value = ""; // Clear the input field
 });
 
-function updateBalance(newBalance) {
-    set(balanceRef, newBalance);
-}
