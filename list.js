@@ -76,13 +76,3 @@ function appendItemToShoppingListEl(item) {
     shoppingListEl.append(newEl)
 }
 
-//import { postedBalance } from "./balance/exportBalance.js";
-
-//const x = document.getElementById("balance");
-const displayedBalance = document.getElementById('balance');
-    displayedBalance.innerHTML = "hi";
-
-//x.innerHTML = "Current Balance: " + postedBalance;
-setInterval(function() {
-    
-})

@@ -95,19 +95,18 @@ const addTransactionButton = document.querySelector('#add-transaction-button');
 addTransactionButton.addEventListener('click', () => {
     let newBalance = document.querySelector('#input-field').value;
     newBalance = `$${newBalance}`;
+    updateBalance(newBalance);
     const date = new Date().toLocaleDateString();
     const time = new Date().toLocaleTimeString();
     
-    // Get the current balance, clean it up, and use just the numeric part
     const currBalanceEl = document.querySelector('#current-balance');
-    const currentBalance = currBalanceEl.innerHTML.replace('Current Balance: ', '').replace('$', '').trim();
-    updateBalance(currentBalance);
+    const currentBalance = currBalanceEl.innerHTML.replace('Current Balance: ', '').trim();
+    
     
     addTransaction(date, time, currentBalance, newBalance);
     document.querySelector('#input-field').value = ""; // Clear the input field
 });
 
 function updateBalance(newBalance) {
-    newBalance = '$' + newBalance;
     set(balanceRef, newBalance);
 }
