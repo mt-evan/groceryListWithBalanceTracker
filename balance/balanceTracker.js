@@ -152,7 +152,7 @@ table.addEventListener('click', (event) => {
             var numRows = table.getElementsByTagName('tr').length - 1;
             if (rowIndex !== numRows) {
                 alert("Can only delete oldest transaction");
-            } else if (rowIndex === 1) {
+            } else if (numRows === 1) {
                 alert("Can't delete all transactions");
             } else {
                 const confirmDelete = confirm("Delete Transaction?");
