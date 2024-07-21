@@ -2,7 +2,7 @@
   "name": "groceryapp",
   "version": "1.0.0",
   "description": "Chatbot for grocery list app",
-  "main": "index.js",
+  "main": "list.js",
   "type": "module",
   "scripts": {
     "start": "node chatbot.js"
