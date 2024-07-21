@@ -11,10 +11,12 @@ const appSettings = {
 const app = initializeApp(appSettings)
 const database = getDatabase(app)
 const shoppingListInDB = ref(database, "shoppingList")
+const balanceRef = ref(database, 'currentBalance')
 
 const inputFieldEl = document.getElementById("input-field")        // Gets string from the input
 const addButtonEl = document.getElementById("add-button")          // Button
 const shoppingListEl = document.getElementById("shopping-list")    // the unordered-list that displays the grocery list
+const postedBalance = document.getElementById("balance");
 
 // when button is pressed the code activates
 addButtonEl.addEventListener("click", function() {
@@ -76,3 +78,15 @@ function appendItemToShoppingListEl(item) {
     shoppingListEl.append(newEl)
 }
 
+function updateBalanceDisplay() {
+    onValue(balanceRef, (snapshot) => {
+        const balance = snapshot.val();
+        if (balance !== null) {
+            postedBalance.innerHTML = `Current Balance: ${balance}`;
+        } else {
+            postedBalance.innerHTML = "Current Balance: $0";
+        }
+    });
+}
+
+setInterval(updateBalanceDisplay, 1000);
