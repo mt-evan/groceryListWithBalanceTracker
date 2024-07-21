@@ -130,3 +130,5 @@ addTransactionButton.addEventListener('click', () => {
     document.querySelector('#input-field').value = ""; // Clear the input field
 });
 
+// if a row is clicked, delete it and its data from the database
+// make deleting the most recent transaction not possible
