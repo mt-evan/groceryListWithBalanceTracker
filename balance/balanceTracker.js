@@ -1,8 +1,49 @@
-// firebase imports
+// Import Firebase functions/methods
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+const appSettings = {
+    databaseURL: "https://realtime-database-30537-default-rtdb.firebaseio.com/"
+};
+
+// Initialize Firebase
+const app = initializeApp(appSettings);
+const database = getDatabase(app);
+
+// Reference to the transactions node
+const transactionsRef = ref(database, "transactions");
+
+// Function to add a transaction
+function addTransaction(date, time, startBal, endBal) {
+    const transaction = {
+        date: date,
+        time: time,
+        startBal: startBal,
+        endBal: endBal
+    };
+    
+    push(transactionsRef, transaction)
+        .then(() => {
+            console.log("Transaction added successfully");
+        })
+        .catch((error) => {
+            console.error("Error adding transaction: ", error);
+        });
+}
+
+// Example usage: Adding a transaction
+
+onValue(transactionsRef, (snapshot) => {
+    if (snapshot.exists()) {
+        let itemsArray = Object.entries(snapshot.val());
+        
+    } else {
+        console.log("No transactions found");
+    }
+})
 
 
 
-const currBalanceEl = document.querySelector('#current-balance');
+/* const currBalanceEl = document.querySelector('#current-balance');
 const addTransactionButton = document.querySelector('#add-transaction-button');
 const transactionsTableBody = document.querySelector('#transactions-table tbody');
 
@@ -51,3 +92,4 @@ function addTransaction(date, time, startingBalance, endingBalance, difference) 
  addTransaction('2024-07-22', '01:45 PM', '$800', '$600', '-$200');
  
 
+*/
