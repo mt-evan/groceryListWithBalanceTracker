@@ -32,6 +32,22 @@ html, body {
     margin: 30px;
 }
 
+#add-transaction-button {
+    background-color: rgb(242, 245, 72);
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+    color: rgb(22, 20, 20);
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+#add-transaction-button:hover {
+    background-color: #b4b402;
+    cursor: pointer;
+}
+
 .balance {
     font-size: 20px;
     font-weight: 600;
@@ -55,19 +71,8 @@ input {
     margin: 10px 0;
 }
 
-#add-button {
-    color: #FDFDFD;
-    background-color: #AC485A;
-    border: 0;
-    padding: 15px;
-    border-radius: 8px;
-    font-size: 20px;
-    text-align: center;
-    font-family: 'Rubik', sans-serif;
-}
-
 button:hover {
-    background-color: #432000;
+    background-color: #97c0f0;
     cursor: pointer;
 }
 
@@ -114,7 +119,7 @@ td {
 }
 
 tr:nth-of-type(even) {
-  background-color: #eee;
+  background-color: #bdbdbd;
 }
 
 table {
