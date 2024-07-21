@@ -116,6 +116,8 @@ addTransactionButton.addEventListener('click', () => {
         document.querySelector('#input-field').value = ""; // Clear the input field
         return;
     }
+    // decimals only up to two places
+    newBalance = parseFloat(newBalance).toFixed(2);
     newBalance = `$${newBalance}`;
     updateBalance(newBalance);
     const date = new Date().toLocaleDateString();
