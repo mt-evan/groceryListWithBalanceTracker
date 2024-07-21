@@ -4,9 +4,6 @@
   "description": "Chatbot for grocery list app",
   "main": "list.js",
   "type": "module",
-  "scripts": {
-    "start": "node chatbot.js"
-  },
   "author": "Evan Tardiff",
   "license": "MIT",
   "dependencies": {
