@@ -72,7 +72,7 @@ function addTransactionRow(date, time, startingBalance, endingBalance) {
 
     // Update the current balance
     const currBalanceEl = document.querySelector('#current-balance');
-    currBalanceEl.innerHTML += endingBalance;
+    currBalanceEl.innerHTML = "Current Balance: " + endingBalance;
 }
 
 // Listen for changes in the transactions node
@@ -90,12 +90,17 @@ onValue(transactionsRef, (snapshot) => {
     }
 });
 
-// Example usage: Adding a transaction
 const addTransactionButton = document.querySelector('#add-transaction-button');
 addTransactionButton.addEventListener('click', () => {
+    let newBalance = document.querySelector('#input-field').value;
+    newBalance = `$${newBalance}`;
     const date = new Date().toLocaleDateString();
     const time = new Date().toLocaleTimeString();
-    const currentBalance = parseFloat(document.querySelector('#current-balance').textContent.substring(1));
-    const newBalance = currentBalance - 200; // Example balance change
+    
+    // Get the current balance, clean it up, and use just the numeric part
+    const currBalanceEl = document.querySelector('#current-balance');
+    const currentBalance = currBalanceEl.innerHTML.replace('Current Balance: ', '').replace('$', '').trim();
+    
     addTransaction(date, time, currentBalance, newBalance);
+    document.querySelector('#input-field').value = ""; // Clear the input field
 });
