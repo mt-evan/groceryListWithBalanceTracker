@@ -145,3 +145,7 @@ caption {
 tr:hover {
   background-color: #b44902;
 }
+
+.hidden-column {
+  display: none;
+}

@@ -34,7 +34,7 @@ function addTransaction(date, time, startBal, endBal) {
 
 // Function to add a transaction row to the table
 // all parameters are strings
-function addTransactionRow(date, time, startingBalance, endingBalance) {
+function addTransactionRow(id, date, time, startingBalance, endingBalance) {
     const tableBody = document.querySelector('#transactions-table tbody');
 
     // Create a new row
@@ -64,6 +64,12 @@ function addTransactionRow(date, time, startingBalance, endingBalance) {
     differenceCell.textContent = `$${difference.toFixed(2)}`;
     newRow.appendChild(differenceCell);
 
+    // Add the Firebase ID cell (hidden)
+    const idCell = document.createElement('td');
+    idCell.textContent = id;
+    idCell.classList.add('hidden-column'); // Apply hidden column class
+    newRow.appendChild(idCell);
+
     // Insert the new row at the top of the table body
     if (tableBody.firstChild) {
         tableBody.insertBefore(newRow, tableBody.firstChild);
@@ -84,7 +90,7 @@ onValue(transactionsRef, (snapshot) => {
     if (snapshot.exists()) {
         const itemsArray = Object.entries(snapshot.val());
         itemsArray.forEach(([key, transaction]) => {
-            addTransactionRow(transaction.date, transaction.time, transaction.startBal, transaction.endBal);
+            addTransactionRow(key, transaction.date, transaction.time, transaction.startBal, transaction.endBal);
         });
     } else {
         console.log("No transactions found");
@@ -148,6 +154,7 @@ table.addEventListener('click', (event) => {
             } else {
                 const confirmDelete = confirm("Delete Transaction?");
                 if (confirmDelete) {
+                    deleteRow(rowIndex);
                     alert("deleted");
                 } else {
                     alert("cancelled");
@@ -156,3 +163,23 @@ table.addEventListener('click', (event) => {
         }
     }
 });
+
+// takes in row index and deletes that row and it's corresponding data in Firebase
+function deleteRow(rowIndex) {
+    const rows = table.getElementsByTagName('tr');
+    if (rowIndex >= 1 && rowIndex < rows.length) {
+        const idCell = rows[rowIndex].querySelector('.hidden-column');
+        const id = idCell ? idCell.textContent : null;
+        
+        if (id) {
+            const transactionRef = ref(database, `transactions/${id}`);
+            set(transactionRef, null)
+                .then(() => {
+                    console.log("Transaction deleted from Firebase");
+                })
+                .catch((error) => {
+                    console.error("Error deleting transaction from Firebase: ", error);
+                });
+        }
+    }
+}
