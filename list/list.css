@@ -14,6 +14,30 @@ html, body {
     margin: 30px auto;
 }
 
+.link-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.link-to-balance {
+    background-color: rgb(72, 118, 245);
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #FDFDFD;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 30px;
+}
+
+.balance {
+    font-size: 20px;
+    font-weight: 600;
+    color: #432000;
+}
+
 img {
     width: 150px;
     margin: 0 auto;
