@@ -21,7 +21,7 @@ html, body {
     justify-content: center;
 }
 
-.link-to-balance {
+#link-to-balance {
     background-color: rgb(72, 118, 245);
     font-size: 20px;
     font-weight: 600;
@@ -67,7 +67,7 @@ input {
 }
 
 button:hover {
-    background-color: #432000;
+    background-color: #97c0f0;
     cursor: pointer;
 }
 

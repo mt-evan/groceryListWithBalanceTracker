@@ -75,7 +75,7 @@ function addTransactionRow(id, date, time, startingBalance, endingBalance) {
         tableBody.appendChild(newRow);
     }
 
-    // Update the current balance
+    // Update the displayedcurrent balance
     const currBalanceEl = document.querySelector('#current-balance');
     currBalanceEl.innerHTML = "Current Balance: " + endingBalance;
 }

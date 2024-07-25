@@ -17,6 +17,11 @@ const postedBalance = document.getElementById("balance");
 // when button is pressed the code activates
 addButtonEl.addEventListener("click", function() {
     let inputValue = inputFieldEl.value   // sets the value from the input
+
+    // if input is empty, do nothing
+    if (inputValue === "") {
+        return;
+    }
     
     push(shoppingListInDB, inputValue)    // pushes the value from input to the shopping list database
     

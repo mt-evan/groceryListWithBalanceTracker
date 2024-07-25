@@ -15,13 +15,6 @@ html, body {
     margin: 30px auto;
 }
 
-.link-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
 .link-to-list {
     background-color: rgb(72, 118, 245);
     font-size: 20px;
@@ -30,7 +23,21 @@ html, body {
     color: #FDFDFD;
     padding: 10px;
     border-radius: 8px;
-    margin: 30px;
+    margin-top: 30px;
+}
+
+.balance {
+  font-size: 20px;
+  font-weight: 600;
+  color: #432000;
+  margin-bottom: 0px;
+}
+
+#instruction {
+    font-size: 16px;
+    font-weight: 400;
+    color: #432000;
+    margin-bottom: 0px;
 }
 
 #add-transaction-button {
@@ -41,18 +48,7 @@ html, body {
     color: rgb(22, 20, 20);
     padding: 10px;
     border-radius: 8px;
-    margin-bottom: 30px;
-}
-
-#add-transaction-button:hover {
-    background-color: #b4b402;
-    cursor: pointer;
-}
-
-.balance {
-    font-size: 20px;
-    font-weight: 600;
-    color: #432000;
+    margin-bottom: 10px;
 }
 
 .table-caption {
@@ -81,6 +77,11 @@ input {
 button:hover {
     background-color: #97c0f0;
     cursor: pointer;
+}
+
+#add-transaction-button:hover {
+  background-color: #b4b402;
+  cursor: pointer;
 }
 
 ul {
