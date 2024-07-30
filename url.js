@@ -1,3 +1,3 @@
 export const appSettings = {
-    databaseURL: ""
+    databaseURL: process.env.DATABASE_URL
 };
