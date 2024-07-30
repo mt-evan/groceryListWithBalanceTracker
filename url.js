@@ -1,3 +1,3 @@
 export const appSettings = {
-    databaseURL: process.env.DATABASE_URL
+    databaseURL: 'https://realtime-database-30537-default-rtdb.firebaseio.com/'
 };
